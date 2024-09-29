@@ -44,8 +44,13 @@ public class RegAndLogController
 	 * @return Shop View if successful, login View if unsuccessful
 	 */
 	@PostMapping("/doLogin")
-	public String doLogin(UserModel user, Model model)
+	public String doLogin(@Valid UserModel user, BindingResult result, Model model)
 	{
+		if (result.hasFieldErrors("username") || result.hasFieldErrors("password"))
+		{
+			model.addAttribute("title", "Login Form");
+			return "login";
+		}
 		// Check for existing username and password combination
 		for (int i = 0; i < userModels.size(); i++)
 		{
@@ -84,15 +89,18 @@ public class RegAndLogController
      * @param model
      * @return Login View if registration is successful, Registration View if unsuccessful
      */
-	@PostMapping("/register")
-	public String doRegister(@Valid UserModel user, BindingResult result, Model model) {
-		if(result.hasErrors()) {
+	@PostMapping("/doRegister")
+	public String doRegister(@Valid UserModel user, BindingResult result, Model model) 
+	{
+		if(result.hasErrors()) 
+		{
 			model.addAttribute("title", "Registration Form");
 			return "register";
 		}
 		
 		 // Check if the username already exists
-		for(UserModel existingUser : userModels) {
+		for(UserModel existingUser : userModels) 
+		{
 			if(existingUser.getUsername().equals(user.getUsername()))
 			{
 				model.addAttribute("title", "Registration Form");

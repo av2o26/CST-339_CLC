@@ -6,28 +6,28 @@ import jakarta.validation.constraints.Size;
 public class UserModel 
 {
 	// Properties
-	@NotNull(message="This is a required field!")
-	@Size(min=1, max=32, message="Password must be between 1 and 32 characters.")
+	@NotNull(message="Please make sure to enter a first name!")
+	@Size(min=1, max=32, message="Can only be 1 to 32 characters.")
 	private String firstName;
 	
-	@NotNull(message="This is a required field!")
-	@Size(min=1, max=32, message="Password must be between 1 and 32 characters.")
+	@NotNull(message="Please make sure to enter a last name!")
+	@Size(min=1, max=32, message="Can only be 1 to 32 characters.")
 	private String lastName;
 	
-	@NotNull(message="This is a required field!")
-	@Size(min=1, max=32, message="Password must be between 1 and 32 characters.")
+	@NotNull(message="Please make sure to enter an email!")
+	@Size(min=1, max=32, message="Can only be 1 to 32 characters.")
 	private String email;
 	
-	@NotNull(message="This is a required field!")
-	@Size(min=1, max=10, message="Phone number must be between 1 and 10 characters.")
+	@NotNull(message="Please make sure to enter a phone number!")
+	@Size(min=1, max=10, message="Can only be 1 to 10 characters.")
 	private String phone;
 	
-	@NotNull(message="This is a required field!")
-	@Size(min=1, max=32, message="Username must be between 1 and 32 characters.")
+	@NotNull(message="Please make sure to enter a username!")
+	@Size(min=1, max=32, message="Can only be 1 to 32 characters.")
 	private String username;
 	
-	@NotNull(message="This is a required field!")
-	@Size(min=1, max=32, message="Password must be between 1 and 32 characters.")
+	@NotNull(message="Please make sure to enter a password!")
+	@Size(min=1, max=32, message="Can only be 1 to 32 characters.")
 	private String password;
 
 	// Getters and Setters
