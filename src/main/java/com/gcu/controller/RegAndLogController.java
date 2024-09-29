@@ -6,15 +6,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gcu.model.UserModel;
 
+import jakarta.validation.Valid;
+
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/")
 public class RegAndLogController 
 {
 	// List of login data (for now)
@@ -26,7 +29,7 @@ public class RegAndLogController
 	 * @param model
 	 * @return Login View
 	 */
-	@GetMapping("/")
+	@GetMapping("/login")
 	public String login(Model model)
 	{
 		model.addAttribute("title", "Login Form");
@@ -60,5 +63,48 @@ public class RegAndLogController
 		// If login failed, login page gets returned
 		model.addAttribute("title", "Login Form");
 		return "login";
+	}
+	
+	/**
+     * Display the Registration Page
+     * @param model
+     * @return Registration View
+     */
+	@GetMapping("/register")
+	public String register(Model model)
+	{
+		model.addAttribute("title", "Registration Form");
+		model.addAttribute("userModel", new UserModel());
+		return "register";
+	}
+	
+	/**
+     * Handle registration form submission
+     * @param userModel
+     * @param model
+     * @return Login View if registration is successful, Registration View if unsuccessful
+     */
+	@PostMapping("/register")
+	public String doRegister(@Valid UserModel user, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			model.addAttribute("title", "Registration Form");
+			return "register";
+		}
+		
+		 // Check if the username already exists
+		for(UserModel existingUser : userModels) {
+			if(existingUser.getUsername().equals(user.getUsername()))
+			{
+				model.addAttribute("title", "Registration Form");
+				model.addAttribute("error", "Username already exists");
+				return "register";
+			}
+		}
+		
+		// Add the new user to the list of registered users
+		userModels.add(user);
+		
+		// Redirect to the login page
+		return "redirect:/login";
 	}
 }
