@@ -60,7 +60,7 @@ public class RegAndLogController
 				if (userModels.get(i).getPassword().equals(user.getPassword()))
 				{
 					// If username and password matched an account, log into shop view
-					return "shop";
+					return "redirect:/shop";
 				}
 			}
 		}
