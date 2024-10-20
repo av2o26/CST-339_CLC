@@ -1,62 +1,77 @@
 package com.gcu.model;
 
-public class ProductModel {
-	private String Name;
-	private double Price;
-	private String Description;
-	private int Quantity;
-	private int ID;
+public class ProductModel 
+{
+	// Properties
+	private String name;
+	private double price;
+	private String description;
+	private int quantity;
+	private int id;
 
-	public ProductModel(String name, double price, String description, int quantity, int id) {
+	/**
+	 * Constructor
+	 * @param name
+	 * @param price
+	 * @param description
+	 * @param quantity
+	 * @param id
+	 */
+	public ProductModel(String name, double price, String description, int quantity, int id) 
+	{
 		super();
-		this.ID = id;
-		this.Name = name;
-		this.Price = price;
-		this.Description = description;
-		this.Quantity = quantity;
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.quantity = quantity;
 	}
+	
+	/**
+	 * Default Constructor
+	 */
 	public ProductModel() {
 		super();
 	}
 
-	public int getID() {
-		return ID;
-	}
-
-	public void setID(int iD) {
-		ID = iD;
-	}
-
+	// Getters and Setters
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public double getPrice() {
-		return Price;
+		return price;
 	}
 
 	public void setPrice(double price) {
-		Price = price;
+		this.price = price;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public int getQuantity() {
-		return Quantity;
+		return quantity;
 	}
 
 	public void setQuantity(int quantity) {
-		Quantity = quantity;
+		this.quantity = quantity;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

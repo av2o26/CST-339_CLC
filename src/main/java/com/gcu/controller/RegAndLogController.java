@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gcu.business.SecurityBusinessService;
 import com.gcu.model.UserModel;
 
 import jakarta.validation.Valid;
@@ -23,6 +25,10 @@ public class RegAndLogController
 	// List of login data (for now)
 	UserModel a = new UserModel("Alex", "Valdivia", "email@email.com", "1111111111", "user", "Password123");
 	List<UserModel> userModels = new ArrayList<UserModel>(Arrays.asList(a));
+	
+	// Services
+	@Autowired
+	private SecurityBusinessService security;
 	
 	/**
 	 * Display the Login Page
@@ -51,18 +57,10 @@ public class RegAndLogController
 			model.addAttribute("title", "Login Form");
 			return "login";
 		}
-		// Check for existing username and password combination
-		for (int i = 0; i < userModels.size(); i++)
+		// Verify login
+		if (security.verifyLogin(userModels, user))
 		{
-			if(userModels.get(i).getUsername().equals(user.getUsername()))
-			{
-				
-				if (userModels.get(i).getPassword().equals(user.getPassword()))
-				{
-					// If username and password matched an account, log into shop view
-					return "redirect:/shop";
-				}
-			}
+			return "redirect:/shop";
 		}
 		
 		// If login failed, login page gets returned
@@ -99,14 +97,12 @@ public class RegAndLogController
 		}
 		
 		 // Check if the username already exists
-		for(UserModel existingUser : userModels) 
+		if (security.doesUsernameExist(userModels, user))
 		{
-			if(existingUser.getUsername().equals(user.getUsername()))
-			{
-				model.addAttribute("title", "Registration Form");
-				model.addAttribute("error", "Username already exists");
-				return "register";
-			}
+			// If the username existed, make the user retry
+			model.addAttribute("title", "Registration Form");
+			model.addAttribute("error", "Username already exists");
+			return "register";
 		}
 		
 		// Add the new user to the list of registered users

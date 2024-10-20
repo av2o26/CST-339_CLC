@@ -29,6 +29,38 @@ public class UserModel
 	@NotNull(message="Please make sure to enter a password!")
 	@Size(min=1, max=32, message="Can only be 1 to 32 characters.")
 	private String password;
+	
+	/**
+	 * Constructor
+	 * @param firstName
+	 * @param lastName
+	 * @param email
+	 * @param phone
+	 * @param username
+	 * @param password
+	 */
+	public UserModel(
+			@NotNull(message = "This is a required field!") @Size(min = 1, max = 32, message = "Password must be between 1 and 32 characters.") String firstName,
+			@NotNull(message = "This is a required field!") @Size(min = 1, max = 32, message = "Password must be between 1 and 32 characters.") String lastName,
+			@NotNull(message = "This is a required field!") @Size(min = 1, max = 32, message = "Password must be between 1 and 32 characters.") String email,
+			@NotNull(message = "This is a required field!") @Size(min = 1, max = 10, message = "Phone number must be between 1 and 10 characters.") String phone,
+			@NotNull(message = "This is a required field!") @Size(min = 1, max = 32, message = "Username must be between 1 and 32 characters.") String username,
+			@NotNull(message = "This is a required field!") @Size(min = 1, max = 32, message = "Password must be between 1 and 32 characters.") String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
+		this.username = username;
+		this.password = password;
+	}
+
+	/**
+	 * Default Constructor
+	 */
+	public UserModel() {
+		super();
+	}
 
 	// Getters and Setters
 	public String getFirstName() {
@@ -77,37 +109,5 @@ public class UserModel
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	/**
-	 * Constructor
-	 * @param firstName
-	 * @param lastName
-	 * @param email
-	 * @param phone
-	 * @param username
-	 * @param password
-	 */
-	public UserModel(
-			@NotNull(message = "This is a required field!") @Size(min = 1, max = 32, message = "Password must be between 1 and 32 characters.") String firstName,
-			@NotNull(message = "This is a required field!") @Size(min = 1, max = 32, message = "Password must be between 1 and 32 characters.") String lastName,
-			@NotNull(message = "This is a required field!") @Size(min = 1, max = 32, message = "Password must be between 1 and 32 characters.") String email,
-			@NotNull(message = "This is a required field!") @Size(min = 1, max = 10, message = "Phone number must be between 1 and 10 characters.") String phone,
-			@NotNull(message = "This is a required field!") @Size(min = 1, max = 32, message = "Username must be between 1 and 32 characters.") String username,
-			@NotNull(message = "This is a required field!") @Size(min = 1, max = 32, message = "Password must be between 1 and 32 characters.") String password) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
-		this.username = username;
-		this.password = password;
-	}
-
-	/**
-	 * Default Constructor
-	 */
-	public UserModel() {
-		super();
 	}
 }

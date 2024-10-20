@@ -4,47 +4,33 @@
 <title></title>
 </head>
 <body>
+	<div th:if="${successMessage}" style="color:green;">
+		<p th:text="${successMessage}"></p>
+	</div>
 	<div layout:fragment="content">
-		<p>The shop currently is waiting to get stocked</p>
-		<div th:if="${successMessage}" style="color:green;">
-			<p th:text="${successMessage}"></p>
-		</div>
-		
-		<form action="#" th:action="@{/createProduct}" th:object="${productModel}" method="post">
-					<table>
-						<tr>
-							<td>ID:</td>
-							<td><input type="text" th:field="*{ID}"></td>
-							<td><h5 style="color:red" th:if="${#fields.hasErrors('ID')}" th:errors="*{ID}">ID Error</h5></td>
-						</tr>
-						<tr>
-							<td>Name:</td>
-							<td><input type="text" th:field="*{Name}"></td>
-							<td><h5 style="color:red" th:if="${#fields.hasErrors('Name')}" th:errors="*{Name}">Name Error</h5></td>
-						</tr>
-						<tr>
-							<td>Price:</td>
-							<td><input type="text" th:field="*{Price}"></td>
-							<td><h5 style="color:red" th:if="${#fields.hasErrors('Price')}" th:errors="*{Price}">Price Error</h5></td>
-						</tr>
-						<tr>
-							<td>Description:</td>
-							<td><input type="text" th:field="*{Description}"></td>
-							<td><h5 style="color:red" th:if="${#fields.hasErrors('Description')}" th:errors="*{Description}">Description Error</h5></td>
-						</tr>
-						<tr>
-							<td>Quantity:</td>
-							<td><input type="text" th:field="*{Quantity}"></td>
-							<td><h5 style="color:red" th:if="${#fields.hasErrors('Quantity')}" th:errors="*{Quantity}">Quantity Error</h5></td>
-						</tr>
-						<tr>
-							<td colspan="2"><input type="submit" value="Create Product"></td>
-						</tr>
-					</table>
-					<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
-					<div th:each="err : ${#fields.errors('*')}">
-						<span style="color:red" th:text="${err}" class="fieldError"></span>
-					</div>
-				</form>
+		<form action="#" th:action="@{createProduct}" th:object="${productModel}" method="post">
+			<table style="width: 50%">
+				<thead>
+					<tr>
+						<th style="text-align: center;">Product Name</th>
+						<th style="text-align: center;">Product Description</th>
+						<th style="text-align: center;">Price</th>
+						<th style="text-align: center;">Quantity</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${products.empty}">
+						<td style="text-align: center;" colspan="4"> The shop is out of stock </td>
+					</tr>
+					<tr th:each="product : ${products}">
+						<td style="text-align: center;"><h5 th:text="${product.name}">Default</h5></td>
+						<td style="text-align: center;"><h5 th:text="${product.description}">This is default text</h5></td>
+						<td style="text-align: center;"><h5 th:text="${product.price}">1.00</h5></td>
+						<td style="text-align: center;"><h5 th:text="${product.quantity}">1</h5></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<p><a href="/editProducts">Go here to edit the products!</a></p>
 	</div>
 </body>
