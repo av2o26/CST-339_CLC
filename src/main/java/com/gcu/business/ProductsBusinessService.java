@@ -3,19 +3,22 @@ package com.gcu.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.gcu.data.DataAccessInterfaceProduct;
 import com.gcu.model.ProductModel;
 
 public class ProductsBusinessService implements ProductsBusinessServiceInterface
 {
+	@Autowired
+	public DataAccessInterfaceProduct<ProductModel> service;
 	// List of Products
 	List<ProductModel> products = new ArrayList<ProductModel>();
 	
 	@Override
 	public List<ProductModel> getProducts() 
 	{
-		products.add(new ProductModel("Stick", 0.50, "It's just a stick.", 10, 1));
-		
-		return products;
+		return service.findAll();
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gcu.business.SecurityBusinessService;
+import com.gcu.data.UserDataService;
 import com.gcu.model.UserModel;
 
 import jakarta.validation.Valid;
@@ -29,6 +30,9 @@ public class RegAndLogController
 	// Services
 	@Autowired
 	private SecurityBusinessService security;
+	
+	@Autowired
+	private UserDataService userDataService; // Inject UserDataService
 	
 	/**
 	 * Display the Login Page
@@ -57,15 +61,19 @@ public class RegAndLogController
 			model.addAttribute("title", "Login Form");
 			return "login";
 		}
-		// Verify login
-		if (security.verifyLogin(userModels, user))
-		{
-			return "redirect:/shop";
-		}
-		
-		// If login failed, login page gets returned
-		model.addAttribute("title", "Login Form");
-		return "login";
+		// Fetch the user from the database
+	    UserModel foundUser  = userDataService.findUserByUsername(user.getUsername());
+
+	    // Check if user exists and password matches
+	    if (foundUser  != null && foundUser .getPassword().equals(user.getPassword())) {
+	        // Successful login, redirect to shop
+	        return "redirect:/shop";
+	    }
+
+	    // If login failed, return to the login page with an error message
+	    model.addAttribute("title", "Login Form");
+	    model.addAttribute("error", "Invalid username or password");
+	    return "login";
 	}
 	
 	/**
@@ -105,10 +113,17 @@ public class RegAndLogController
 			return "register";
 		}
 		
-		// Add the new user to the list of registered users
-		userModels.add(user);
-		
-		// Redirect to the login page
-		return "redirect:/login";
+		// Call createUser  to save the new user to the database
+        boolean isCreated = userDataService.createUser (user);
+        
+        if (isCreated) {
+            // Redirect to the login page if registration is successful
+            return "redirect:/login";
+        } else {
+            // If registration failed, show an error message
+            model.addAttribute("title", "Registration Form");
+            model.addAttribute("error", "Registration failed. Please try again.");
+            return "register";
+        }
 	}
 }
