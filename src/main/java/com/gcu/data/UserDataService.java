@@ -9,7 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import com.gcu.data.repository.UsersRepository;
+
 import com.gcu.model.UserModel;
 
 @Service
@@ -19,8 +19,8 @@ public class UserDataService implements DataAccessInterfaceUser<UserModel> {
 	private DataSource dataSource;
 	@Autowired
 	private JdbcTemplate jdbcTemplateObject;
-	@Autowired
-	private UsersRepository usersRepository;
+
+	
 	
 	public UserDataService(DataSource dataSource)
 	{

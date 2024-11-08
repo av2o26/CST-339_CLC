@@ -24,9 +24,14 @@ public class ProductsBusinessService implements ProductsBusinessServiceInterface
 	@Override
 	public List<ProductModel> addProduct(ProductModel product) 
 	{
-		products.add(product);
-		
-		return products;
+		boolean isCreated = service.create(product);
+	    List<ProductModel> productList = new ArrayList<>();
+
+	    if (isCreated) {
+	        productList.add(product); // Add the product to the list if created successfully
+	    }
+
+	    return productList;
 	}
 
 	@Override

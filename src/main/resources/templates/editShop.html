@@ -8,11 +8,6 @@
 		<form action="#" th:action="@{/createProduct}" th:object="${productModel}" method="post">
 				<table>
 					<tr>
-						<td>ID:</td>
-						<td><input type="number" th:field="*{id}"></td>
-						<td><h5 style="color:red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">ID Error</h5></td>
-					</tr>
-					<tr>
 						<td>Name:</td>
 						<td><input type="text" th:field="*{name}"></td>
 						<td><h5 style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</h5></td>
@@ -29,7 +24,7 @@
 					</tr>
 					<tr>
 						<td>Quantity:</td>
-						<td><input type="nunber" th:field="*{quantity}"></td>
+						<td><input type="number" th:field="*{quantity}"></td>
 						<td><h5 style="color:red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Quantity Error</h5></td>
 					</tr>
 					<tr>
