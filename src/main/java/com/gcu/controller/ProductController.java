@@ -64,6 +64,6 @@ public class ProductController
         model.addAttribute("products", products); // Reset the form
         model.addAttribute("successMessage", "Product created successfully!");
 
-        return "shop"; // Return to the shop view
+        return "redirect:/shop"; // Return to the shop view
 	}
 }

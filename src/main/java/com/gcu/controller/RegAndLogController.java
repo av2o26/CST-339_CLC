@@ -1,8 +1,6 @@
 package com.gcu.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gcu.business.SecurityBusinessService;
+
 import com.gcu.data.UserDataService;
 import com.gcu.model.UserModel;
 
@@ -23,13 +21,9 @@ import jakarta.validation.Valid;
 @RequestMapping("/")
 public class RegAndLogController 
 {
-	// List of login data (for now)
-	UserModel a = new UserModel("Alex", "Valdivia", "email@email.com", "1111111111", "user", "Password123");
-	List<UserModel> userModels = new ArrayList<UserModel>(Arrays.asList(a));
 	
-	// Services
-	@Autowired
-	private SecurityBusinessService security;
+	
+	
 	
 	@Autowired
 	private UserDataService userDataService; // Inject UserDataService
@@ -104,14 +98,7 @@ public class RegAndLogController
 			return "register";
 		}
 		
-		 // Check if the username already exists
-		if (security.doesUsernameExist(userModels, user))
-		{
-			// If the username existed, make the user retry
-			model.addAttribute("title", "Registration Form");
-			model.addAttribute("error", "Username already exists");
-			return "register";
-		}
+		 
 		
 		// Call createUser  to save the new user to the database
         boolean isCreated = userDataService.createUser (user);
