@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import com.gcu.model.ProductModel;
 
 @Service
-public class ProductDataService implements DataAccessInterfaceProduct<ProductModel>{
-	
+public class ProductDataService implements DataAccessInterfaceProduct<ProductModel>
+{	
 	@Autowired
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplateObject;
@@ -59,7 +59,8 @@ public class ProductDataService implements DataAccessInterfaceProduct<ProductMod
 					product.getDescription(),
 					product.getQuantity());
 			return rows == 1 ? true : false;
-		}catch(Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -68,32 +69,38 @@ public class ProductDataService implements DataAccessInterfaceProduct<ProductMod
 	
 	public boolean update(ProductModel product)
 	{
+		String sql = "UPDATE PRODUCT SET name = ?, price = ?, description = ?, quantity = ? WHERE Id = ?";
+		try
+		{
+			int rows = jdbcTemplateObject.update(sql, 
+					product.getName(), 
+					product.getPrice(), 
+					product.getDescription(),
+					product.getQuantity(),
+					product.getId());
+			return rows == 1 ? true : false;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 		return true;
 	}
 	
 	public boolean delete(ProductModel product)
 	{
+		String sql = "DELETE FROM product WHERE id = ?";
+		try
+		{
+			int rows = jdbcTemplateObject.update(sql, product.getId()); 
+			return rows == 1 ? true : false;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 		return true;
 	}
-
-	@Override
-	public ProductModel findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

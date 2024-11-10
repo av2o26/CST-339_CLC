@@ -57,13 +57,11 @@ public class ProductController
         // Add new product to list
         products = service.addProduct(productModel);
         
-        // TODO: add method to store data to a database
-
-        // Optionally, you can add a success message or redirect to another page
+        // Reload shop view
         model.addAttribute("title", "Shop");
         model.addAttribute("products", products); // Reset the form
         model.addAttribute("successMessage", "Product created successfully!");
 
-        return "redirect:/shop"; // Return to the shop view
+        return "shop"; // Return to the shop view
 	}
 }

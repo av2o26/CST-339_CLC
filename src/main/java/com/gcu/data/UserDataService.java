@@ -21,28 +21,19 @@ public class UserDataService implements DataAccessInterfaceUser<UserModel> {
 	@Autowired
 	private JdbcTemplate jdbcTemplateObject;
 
-
-	
-
-	
 	public UserDataService(DataSource dataSource)
 	{
 		this.dataSource = dataSource;
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
 	
-	
-	@Override
-	public List<UserModel> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@SuppressWarnings("deprecation")
 	@Override
-	public UserModel findUserByUsername(String username) {
+	public UserModel findUserByUsername(String username) 
+	{
 		String sql = "SELECT * FROM USERTABLE WHERE userName = ?";
-	    try {
+	    try 
+	    {
 	        return jdbcTemplateObject.query(sql, new Object[]{username}, (rs, rowNum) -> {
 	            UserModel user = new UserModel();
 	            user.setFirstName(rs.getString("firstName"));
@@ -53,15 +44,19 @@ public class UserDataService implements DataAccessInterfaceUser<UserModel> {
 	            user.setPassword(rs.getString("password")); // Be cautious with storing passwords
 	            return user;
 	        }).stream().findFirst().orElse(null); // Get the first result or return null
-	    } catch (EmptyResultDataAccessException e) {
+	    } 
+	    catch (EmptyResultDataAccessException e) 
+	    {
 	        return null; // User not found
 	    }
 	}
 
 	@Override
-	public boolean createUser(UserModel user) {
+	public boolean createUser(UserModel user)
+	{
 		String sql = "INSERT INTO USERTABLE(firstName, lastName, email, phoneNumber, userName, password) VALUES(?, ?, ?, ?, ?, ?)"; // Adjust as necessary
-        try {
+        try 
+        {
             int rows = jdbcTemplateObject.update(sql,
                     user.getFirstName(),
                     user.getLastName(),
@@ -70,23 +65,11 @@ public class UserDataService implements DataAccessInterfaceUser<UserModel> {
                     user.getUsername(),
                     user.getPassword());
             return rows == 1;
-        } catch (Exception e) {
+        } 
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return false;
     }
-	
-
-	@Override
-	public boolean updateUser(UserModel user) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteUser(UserModel user) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
