@@ -19,6 +19,10 @@ public interface ProductsBusinessServiceInterface
 	 */
 	public List<ProductModel> addProduct(ProductModel product);
 	
+	public List<ProductModel> updateProduct(ProductModel product);
+	
+	public List<ProductModel> deleteProduct(ProductModel product);
+	
 	public void init();
 	
 	public void destroy();

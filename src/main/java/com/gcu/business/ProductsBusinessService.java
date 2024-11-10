@@ -12,8 +12,6 @@ public class ProductsBusinessService implements ProductsBusinessServiceInterface
 {
 	@Autowired
 	public DataAccessInterfaceProduct<ProductModel> service;
-	// List of Products
-	List<ProductModel> products = new ArrayList<ProductModel>();
 	
 	@Override
 	public List<ProductModel> getProducts() 
@@ -27,11 +25,26 @@ public class ProductsBusinessService implements ProductsBusinessServiceInterface
 		boolean isCreated = service.create(product);
 	    List<ProductModel> productList = new ArrayList<>();
 
-	    if (isCreated) {
+	    if (isCreated)
 	        productList.add(product); // Add the product to the list if created successfully
-	    }
 
 	    return productList;
+	}
+	
+	@Override
+	public List<ProductModel> updateProduct(ProductModel product)
+	{
+		service.update(product);
+		
+		return service.findAll();
+	}
+	
+	@Override
+	public List<ProductModel> deleteProduct(ProductModel product)
+	{
+		service.delete(product);
+		
+		return service.findAll();
 	}
 
 	@Override

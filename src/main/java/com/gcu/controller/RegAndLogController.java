@@ -21,10 +21,6 @@ import jakarta.validation.Valid;
 @RequestMapping("/")
 public class RegAndLogController 
 {
-	
-	
-	
-	
 	@Autowired
 	private UserDataService userDataService; // Inject UserDataService
 	
@@ -96,9 +92,7 @@ public class RegAndLogController
 		{
 			model.addAttribute("title", "Registration Form");
 			return "register";
-		}
-		
-		 
+		} 
 		
 		// Call createUser  to save the new user to the database
         boolean isCreated = userDataService.createUser (user);

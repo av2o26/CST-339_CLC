@@ -27,6 +27,7 @@ public class ProductController
 	public String products(Model model)
 	{
 		// Fill product list
+		products.clear();
 		products = service.getProducts();
 		
 		model.addAttribute("title", "Shop");
@@ -63,5 +64,20 @@ public class ProductController
         model.addAttribute("successMessage", "Product created successfully!");
 
         return "shop"; // Return to the shop view
+	}
+	
+	/* TODO: The views need to be finished for the updating and deleting. I thought about adding onto
+	 * 		 the editShop view and making one big page where all the edits could be done, or
+	 * 		 alternatively making multiple different views for each action. I'll let you decide, I've
+	 * 		 deleted my attempts since none of them got close to working and have left these blank for now
+	 * 		 since they rely on how the views work to code these out. */
+	public String updateProduct()
+	{
+		return "";
+	}
+
+	public String deleteProduct() 
+	{
+		return "";
 	}
 }
