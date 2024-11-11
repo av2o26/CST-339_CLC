@@ -1,0 +1,43 @@
+body {
+	margin: 0;
+	/* Remove default margin */
+}
+
+.form-container {
+	display: flex;
+	flex-direction: row;
+	/* Stack forms vertically */
+	align-items: center;
+	/* Center forms in the container */
+	justify-content: center;
+	/* Center content vertically */
+	height: 20vh;
+	/* Full viewport height */
+	padding: 20px;
+	/* Add some padding */
+}
+
+form {
+	width: 100%;
+	/* Make each form full width */
+	max-width: 400px;
+	/* Set max width for responsiveness */
+	margin-bottom: 20px;
+	/* Space between forms */
+	border: 1px solid #ccc;
+	/*  add a border for clarity */
+	padding: 10px;
+	/* add padding inside the form */
+	border-radius: 5px;
+	/*rounded corners */
+}
+
+table {
+	width: 100%;
+	/* Make tables full width */
+}
+
+input[type="text"], input[type="number"] {
+	width: 100%;
+	/* Make input fields full width */
+}

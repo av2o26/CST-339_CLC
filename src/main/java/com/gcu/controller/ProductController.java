@@ -27,7 +27,6 @@ public class ProductController
 	public String products(Model model)
 	{
 		// Fill product list
-		products.clear();
 		products = service.getProducts();
 		
 		model.addAttribute("title", "Shop");
@@ -45,39 +44,29 @@ public class ProductController
 	}
 	
 	@PostMapping("/createProduct")
-    public String createProduct(ProductModel productModel, BindingResult bindingResult, Model model) 
+    public String createProduct(ProductModel productModel) 
 	{
-        // Validate the productModel if needed
-        if (bindingResult.hasErrors()) 
-        {
-            // If there are validation errors, return to the shop view with the current productModel
-            model.addAttribute("title", "Shop");
-            return "shop"; // Return to the shop view with errors
-        }
-        
         // Add new product to list
         products = service.addProduct(productModel);
         
-        // Reload shop view
-        model.addAttribute("title", "Shop");
-        model.addAttribute("products", products); // Reset the form
-        model.addAttribute("successMessage", "Product created successfully!");
-
-        return "shop"; // Return to the shop view
+        
+        return "redirect:/shop";
+       }
+	
+	
+	@PostMapping("/updateProduct")
+	public String updateProduct(ProductModel productModel)
+	{
+		products = service.updateProduct(productModel);
+		
+		return "redirect:/shop";
 	}
 	
-	/* TODO: The views need to be finished for the updating and deleting. I thought about adding onto
-	 * 		 the editShop view and making one big page where all the edits could be done, or
-	 * 		 alternatively making multiple different views for each action. I'll let you decide, I've
-	 * 		 deleted my attempts since none of them got close to working and have left these blank for now
-	 * 		 since they rely on how the views work to code these out. */
-	public String updateProduct()
+	@PostMapping("/deleteProduct")
+	public String deleteProduct(ProductModel productModel) 
 	{
-		return "";
-	}
-
-	public String deleteProduct() 
-	{
-		return "";
+		products = service.deleteProduct(productModel);
+		
+		return "redirect:/shop";
 	}
 }
