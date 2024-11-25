@@ -89,8 +89,8 @@
 			<form action="#" th:action="@{/deleteProduct}" th:object="${productModel}" method="post">
 				<table>
 					<tr>
-						<td>Enter the ID of the product to delete:</td>
-						<td><input type="text" th:field="*{id}" placeholder="Enter Product ID to delete"></td>
+						<td>Enter the name of the product to delete:</td>
+						<td><input type="text" th:field="*{name}" placeholder="Enter Product name to delete"></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="Delete Product"></td>

@@ -6,17 +6,10 @@ import com.gcu.model.ProductModel;
 
 public interface ProductsBusinessServiceInterface 
 {
-	/**
-	 * See what products are in the shop
-	 * @return products list
-	 */
 	public List<ProductModel> getProducts();
 	
-	/**
-	 * Adds a product to the shop
-	 * @param product
-	 * @return updated products list
-	 */
+	public ProductModel getProductById(String id);
+	
 	public List<ProductModel> addProduct(ProductModel product);
 	
 	public List<ProductModel> updateProduct(ProductModel product);

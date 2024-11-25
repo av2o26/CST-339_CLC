@@ -16,7 +16,6 @@
 						<th style="text-align: center;">Product Description</th>
 						<th style="text-align: center;">Price</th>
 						<th style="text-align: center;">Quantity</th>
-						<th style="text-align: center;">ID</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,11 +27,12 @@
 						<td style="text-align: center;"><h5 th:text="${product.description}">This is default text</h5></td>
 						<td style="text-align: center;"><h5 th:text="${product.price}">1.00</h5></td>
 						<td style="text-align: center;"><h5 th:text="${product.quantity}">1</h5></td>
-						<td style="text-align: center;"><h5 th:text="${product.id}">0</h5></td>
 					</tr>
 				</tbody>
 			</table>
 		</form>
-		<p><a href="/editProducts">Go here to edit the products!</a></p>
+		<br>
+		<br>
+		<p><a href="edit">Go here to edit the products!</a></p>
 	</div>
 </body>

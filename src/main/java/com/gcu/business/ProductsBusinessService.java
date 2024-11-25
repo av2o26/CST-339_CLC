@@ -5,46 +5,71 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.gcu.data.DataAccessInterfaceProduct;
+import com.gcu.data.ProductsDataService;
+import com.gcu.data.entity.ProductEntity;
 import com.gcu.model.ProductModel;
 
 public class ProductsBusinessService implements ProductsBusinessServiceInterface
 {
 	@Autowired
-	public DataAccessInterfaceProduct<ProductModel> service;
+	public ProductsDataService service;
 	
 	@Override
 	public List<ProductModel> getProducts() 
 	{
-		return service.findAll();
+		var productList = new ArrayList<ProductModel>();
+		
+		var productsEntity = service.findAll();
+		
+		for (ProductEntity entity : productsEntity)
+		{
+			productList.add(new ProductModel(entity.getId(), entity.getName(), entity.getDescription(), entity.getPrice(), entity.getQuantity()));
+		}
+		
+		// Return list of products
+		return productList;
 	}
 
 	@Override
-	public List<ProductModel> addProduct(ProductModel product) 
+	public ProductModel getProductById(String id)
 	{
-		boolean isCreated = service.create(product);
-	    List<ProductModel> productList = new ArrayList<>();
-
-	    if (isCreated)
-	        productList.add(product); // Add the product to the list if created successfully
-
-	    return productList;
+		var productEntity = service.findByID(id);
+		if (productEntity != null)
+			return new ProductModel(productEntity.getId(), productEntity.getName(), productEntity.getDescription(), productEntity.getPrice(), productEntity.getQuantity());
+		else
+			return null;
+	}
+	
+	@Override
+	public List<ProductModel> addProduct(ProductModel product) 
+	{		
+		ProductEntity productEntity = new ProductEntity(product.getId(), product.getName(), product.getPrice(), product.getDescription(), product.getQuantity());
+		
+		service.create(productEntity);
+		
+		// Return list of products
+		return getProducts();
 	}
 	
 	@Override
 	public List<ProductModel> updateProduct(ProductModel product)
 	{
-		service.update(product);
+		ProductEntity productEntity = new ProductEntity(product.getId(), product.getName(), product.getPrice(), product.getDescription(), product.getQuantity());
 		
-		return service.findAll();
+		service.update(productEntity);
+		
+		// Return list of products
+		return getProducts();
 	}
 	
 	@Override
 	public List<ProductModel> deleteProduct(ProductModel product)
 	{
-		service.delete(product);
+		ProductEntity productEntity = new ProductEntity(product.getId(), product.getName(), product.getPrice(), product.getDescription(), product.getQuantity());
 		
-		return service.findAll();
+		service.update(productEntity);
+		
+		return getProducts();
 	}
 
 	@Override

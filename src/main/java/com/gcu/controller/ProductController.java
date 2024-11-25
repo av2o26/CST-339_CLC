@@ -14,29 +14,29 @@ import com.gcu.business.ProductsBusinessServiceInterface;
 import com.gcu.model.ProductModel;
 
 @Controller 
-@RequestMapping("/")
+@RequestMapping("/shop")
 public class ProductController 
 {	
 	@Autowired
 	private ProductsBusinessServiceInterface service;
 	
-	// Product List
-	private List<ProductModel> products;
-	
-	@GetMapping("/shop")
-	public String products(Model model)
-	{
-		// Fill product list
-		products = service.getProducts();
+	@GetMapping("/display")
+	public String display(Model model)
+	{		
+		// Get products
+		List<ProductModel> products = service.getProducts();
 		
-		model.addAttribute("title", "Shop");
+		// Show product view
+		model.addAttribute("title", "My Orders");
 		model.addAttribute("products", products);
 		return "shop";
 	}
 	
-	@GetMapping("/editProducts")
+	@GetMapping("/edit")
 	public String editProducts(Model model)
 	{
+		// TODO: Maybe needs to be redone?
+		
 		model.addAttribute("title", "Edit Shop");
 		model.addAttribute("productModel", new ProductModel());
 		
@@ -46,27 +46,25 @@ public class ProductController
 	@PostMapping("/createProduct")
     public String createProduct(ProductModel productModel) 
 	{
-        // Add new product to list
-        products = service.addProduct(productModel);
+        service.addProduct(productModel);
         
-        
-        return "redirect:/shop";
+        return "shop";
        }
 	
 	
 	@PostMapping("/updateProduct")
 	public String updateProduct(ProductModel productModel)
 	{
-		products = service.updateProduct(productModel);
+		service.updateProduct(productModel);
 		
-		return "redirect:/shop";
+		return "shop";
 	}
 	
 	@PostMapping("/deleteProduct")
 	public String deleteProduct(ProductModel productModel) 
 	{
-		products = service.deleteProduct(productModel);
+		service.deleteProduct(productModel);
 		
-		return "redirect:/shop";
+		return "shop";
 	}
 }
