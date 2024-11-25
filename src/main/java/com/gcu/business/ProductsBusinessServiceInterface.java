@@ -14,7 +14,7 @@ public interface ProductsBusinessServiceInterface
 	
 	public List<ProductModel> updateProduct(ProductModel product);
 	
-	public List<ProductModel> deleteProduct(ProductModel product);
+	public void deleteProductById(String productId);
 	
 	public void init();
 	
