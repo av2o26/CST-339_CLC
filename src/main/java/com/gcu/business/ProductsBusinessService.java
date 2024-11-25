@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gcu.data.ProductsDataService;
 import com.gcu.data.entity.ProductEntity;
+import com.gcu.data.repository.ProductsRepository;
 import com.gcu.model.ProductModel;
 
 public class ProductsBusinessService implements ProductsBusinessServiceInterface
 {
 	@Autowired
 	public ProductsDataService service;
+	
+	@Autowired
+	public ProductsRepository productRepo;
 	
 	@Override
 	public List<ProductModel> getProducts() 
@@ -63,13 +67,9 @@ public class ProductsBusinessService implements ProductsBusinessServiceInterface
 	}
 	
 	@Override
-	public List<ProductModel> deleteProduct(ProductModel product)
-	{
-		ProductEntity productEntity = new ProductEntity(product.getId(), product.getName(), product.getPrice(), product.getDescription(), product.getQuantity());
-		
-		service.update(productEntity);
-		
-		return getProducts();
+	public void deleteProductById(String productId) {
+	    // Assuming you have a repository for ProductEntity
+		productRepo.deleteById(productId);
 	}
 
 	@Override

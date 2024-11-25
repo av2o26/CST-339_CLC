@@ -11,7 +11,7 @@
 	<div layout:fragment="content">
 		<div class="form-container">
 			<!-- Create Product Form -->
-			<form action="#" th:action="@{/createProduct}" th:object="${productModel}" method="post">
+			<form action="#" th:action="@{/shop/createProduct}" th:object="${productModel}" method="post">
 				<table>
 					<tr>
 						<td>Name:</td>
@@ -57,7 +57,7 @@
 			</form>
 			<br>
 			<!-- Update Product Form -->
-			<form action="#" th:action="@{/updateProduct}" th:object="${productModel}" method="post">
+			<form action="#" th:action="@{/shop/updateProduct}" th:object="${productModel}" method="post">
 				<table>
 					<tr>
 						<td>Update Name:</td>
@@ -77,7 +77,7 @@
 					</tr>
 					<tr>
 						<td>ID of product to be updated:</td>
-						<td><input type="number" th:field="*{id}"></td>
+						<td><input type="text" th:field="*{id}"></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="Update Product"></td>
@@ -86,11 +86,11 @@
 			</form>
 			<br>
 			<!-- Delete Product Form -->
-			<form action="#" th:action="@{/deleteProduct}" th:object="${productModel}" method="post">
+			<form action="#" th:action="@{/shop/deleteProduct}" th:object="${productModel}" method="post">
 				<table>
 					<tr>
-						<td>Enter the name of the product to delete:</td>
-						<td><input type="text" th:field="*{name}" placeholder="Enter Product name to delete"></td>
+						<td>Enter the ID of the product to delete:</td>
+						<td><input type="text" th:field="*{id}" placeholder="Enter Product ID to delete"></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="Delete Product"></td>
