@@ -15,8 +15,8 @@ import com.gcu.model.ProductModel;
 
 @RestController
 @RequestMapping("service")
-public class ProductsRestController {
-	
+public class ProductsRestController
+{	
 	@Autowired
 	private ProductsBusinessServiceInterface service;
 	
@@ -26,7 +26,7 @@ public class ProductsRestController {
 		return service.getProducts();
 	}
 	
-	@GetMapping(path="/getProduct/{id}")
+	@GetMapping(path="/product/{id}")
 	public ResponseEntity<?> getProduct(@PathVariable("id") String id)
 	{
 		try {
