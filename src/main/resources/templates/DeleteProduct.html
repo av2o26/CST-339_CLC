@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="https://www.utraq.net.nz/thymeleaf/layout"
+	layout:decorate="layouts/defaultTemplate">
+
+<head>
+	<title>Delete Product</title>
+	<link rel="stylesheet" type="text/css" href="/css/styles.css"> <!-- Link to CSS file -->
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="form-container">
+		<!-- Delete Product Form -->
+			<form action="#" th:action="@{/shop/deleteProduct}" th:object="${productModel}" method="post">
+				<table>
+					<tr>
+						<td>Enter the ID of the product to delete:</td>
+						<td><input type="text" th:field="*{id}" placeholder="Enter Product ID to delete"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="Delete Product"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>

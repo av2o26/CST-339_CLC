@@ -36,12 +36,34 @@ public class ProductController
 	@GetMapping("/edit")
 	public String editProducts(Model model)
 	{
-		// TODO: Maybe needs to be redone?
+		
 		
 		model.addAttribute("title", "Edit Shop");
 		model.addAttribute("productModel", new ProductModel());
 		
-		return "editShop";
+		return "EditProduct";
+	}
+	
+	@GetMapping("/create")
+	public String createProducts(Model model)
+	{
+		
+		
+		model.addAttribute("title", "Edit Shop");
+		model.addAttribute("productModel", new ProductModel());
+		
+		return "CreateProduct";
+	}
+	
+	@GetMapping("/delete")
+	public String deleteProducts(Model model)
+	{
+		
+		
+		model.addAttribute("title", "Edit Shop");
+		model.addAttribute("productModel", new ProductModel());
+		
+		return "DeleteProduct";
 	}
 	
 	@PostMapping("/createProduct")
