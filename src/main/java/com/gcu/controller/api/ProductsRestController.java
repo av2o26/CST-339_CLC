@@ -20,13 +20,13 @@ public class ProductsRestController
 	@Autowired
 	private ProductsBusinessServiceInterface service;
 	
-	@GetMapping(path="/allProducts")
+	@GetMapping(path="/products")
 	public List<ProductModel> getAllProducts()
 	{
 		return service.getProducts();
 	}
 	
-	@GetMapping(path="/product/{id}")
+	@GetMapping(path="/products/{id}")
 	public ResponseEntity<?> getProduct(@PathVariable("id") String id)
 	{
 		try {
