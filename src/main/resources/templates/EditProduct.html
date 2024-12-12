@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="https://www.utraq.net.nz/thymeleaf/layout"
+	layout:decorate="layouts/defaultTemplate">
+
+<head>
+	<title>Edit Product</title>
+	<link rel="stylesheet" type="text/css" href="/css/styles.css"> <!-- Link to CSS file -->
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="form-container">
+			
+			<!-- Update Product Form -->
+			<form action="#" th:action="@{/shop/updateProduct}" th:object="${productModel}" method="post">
+				<table>
+					<tr>
+						<td>Update Name:</td>
+						<td><input type="text" th:field="*{name}"></td>
+					</tr>
+					<tr>
+						<td>Update Price:</td>
+						<td><input type="number" th:field="*{price}"></td>
+					</tr>
+					<tr>
+						<td>Update Description:</td>
+						<td><input type="text" th:field="*{description}"></td>
+					</tr>
+					<tr>
+						<td>Update Quantity:</td>
+						<td><input type="number" th:field="*{quantity}"></td>
+					</tr>
+					<tr>
+						<td>ID of product to be updated:</td>
+						<td><input type="text" th:field="*{id}"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="Update Product"></td>
+					</tr>
+				</table>
+			</form>
+			<br>
+			
+		</div>
+	</div>
+</body>
