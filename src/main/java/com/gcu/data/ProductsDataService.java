@@ -22,6 +22,9 @@ public class ProductsDataService implements ProductsDataAccessInterface<ProductE
 		this.productsRepository = productsRepository;
 	}
 	
+	/**
+	 * Get all products
+	 */
 	public List<ProductEntity> findAll()
 	{
 		List<ProductEntity> products = new ArrayList<ProductEntity>();
@@ -42,11 +45,17 @@ public class ProductsDataService implements ProductsDataAccessInterface<ProductE
 		return products;
 	}
 	
+	/**
+	 * Get a specific product
+	 */
 	public ProductEntity findByID(String id)
 	{
 		return productsRepository.getProductById(id);
 	}
 	
+	/**
+	 * Create a product
+	 */
 	public boolean create(ProductEntity product)
 	{
 		try
@@ -62,9 +71,11 @@ public class ProductsDataService implements ProductsDataAccessInterface<ProductE
 		return true;
 	}
 	
+	/**
+	 * Update a product
+	 */
 	public boolean update(ProductEntity product)
 	{
-		// TODO: Rework for Mongo
 		try
 		{
 			productsRepository.save(product);
@@ -77,9 +88,11 @@ public class ProductsDataService implements ProductsDataAccessInterface<ProductE
 		return true;
 	}
 	
+	/**
+	 * Delete a product
+	 */
 	public boolean delete(ProductEntity product)
 	{
-		// TODO: Rework for Mongo
 		try
 		{
 			productsRepository.delete(product);

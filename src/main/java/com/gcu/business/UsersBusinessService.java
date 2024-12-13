@@ -37,7 +37,7 @@ public class UsersBusinessService implements UserDetailsService
 	/**
 	 * Used to support String security user authentication
 	 * @param username
-	 * @return
+	 * @return UserDetails
 	 * @throws UsernameNotFoundException
 	 */
 	@Override

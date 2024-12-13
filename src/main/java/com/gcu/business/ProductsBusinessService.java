@@ -18,6 +18,9 @@ public class ProductsBusinessService implements ProductsBusinessServiceInterface
 	@Autowired
 	public ProductsRepository productRepo;
 	
+	/**
+	 * Get the product list from the data layer
+	 */
 	@Override
 	public List<ProductModel> getProducts() 
 	{
@@ -34,6 +37,9 @@ public class ProductsBusinessService implements ProductsBusinessServiceInterface
 		return productList;
 	}
 
+	/**
+	 * Get the a specific product from the data layer
+	 */
 	@Override
 	public ProductModel getProductById(String id)
 	{
@@ -44,6 +50,9 @@ public class ProductsBusinessService implements ProductsBusinessServiceInterface
 			return null;
 	}
 	
+	/**
+	 * Add a product, send it to the data layer, then retrieve the updated list of products
+	 */
 	@Override
 	public List<ProductModel> addProduct(ProductModel product) 
 	{		
@@ -55,6 +64,9 @@ public class ProductsBusinessService implements ProductsBusinessServiceInterface
 		return getProducts();
 	}
 	
+	/**
+	 * Update a product, send it to the data layer, then retrieve the updated list of products
+	 */
 	@Override
 	public List<ProductModel> updateProduct(ProductModel product)
 	{
@@ -66,18 +78,27 @@ public class ProductsBusinessService implements ProductsBusinessServiceInterface
 		return getProducts();
 	}
 	
+	/**
+	 * Delete a product
+	 */
 	@Override
 	public void deleteProductById(String productId) {
 	    // Assuming you have a repository for ProductEntity
 		productRepo.deleteById(productId);
 	}
 
+	/**
+	 * Initialization message
+	 */
 	@Override
 	public void init() 
 	{
 		System.out.println("Init has initialized.");
 	}
 
+	/**
+	 * Destroy message
+	 */
 	@Override
 	public void destroy() 
 	{

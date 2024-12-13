@@ -21,6 +21,11 @@ public class ProductController
 	@Autowired
 	private ProductsBusinessServiceInterface service;
 	
+	/**
+	 * Display the shop view
+	 * @param model
+	 * @return shop view
+	 */
 	@GetMapping("/display")
 	public String display(Model model)
 	{		
@@ -33,6 +38,11 @@ public class ProductController
 		return "shop";
 	}
 	
+	/**
+	 * Display the product update view
+	 * @param model
+	 * @return edit view
+	 */
 	@GetMapping("/edit")
 	public String editProducts(Model model)
 	{
@@ -44,6 +54,11 @@ public class ProductController
 		return "EditProduct";
 	}
 	
+	/**
+	 * Display the product creation view
+	 * @param model
+	 * @return create view
+	 */
 	@GetMapping("/create")
 	public String createProducts(Model model)
 	{
@@ -55,6 +70,11 @@ public class ProductController
 		return "CreateProduct";
 	}
 	
+	/**
+	 * Display the product deletion view
+	 * @param model
+	 * @return delete view
+	 */
 	@GetMapping("/delete")
 	public String deleteProducts(Model model)
 	{
@@ -66,6 +86,11 @@ public class ProductController
 		return "DeleteProduct";
 	}
 	
+	/**
+	 * Send the request to create a product
+	 * @param productModel
+	 * @return shop view
+	 */
 	@PostMapping("/createProduct")
     public String createProduct(ProductModel productModel) 
 	{
@@ -74,7 +99,11 @@ public class ProductController
         return "redirect:/shop/display";
        }
 	
-	
+	/**
+	 * Send the request to update a product
+	 * @param productModel
+	 * @return shop view
+	 */
 	@PostMapping("/updateProduct")
 	public String updateProduct(ProductModel productModel)
 	{
@@ -83,6 +112,11 @@ public class ProductController
 		return "redirect:/shop/display";
 	}
 	
+	/**
+	 * Send the request to delete a product
+	 * @param productModel
+	 * @return shop view
+	 */
 	@PostMapping("/deleteProduct")
 	public String deleteProduct(@ModelAttribute ProductModel productModel) {
 	    // Call the service method with the ID of the product to delete

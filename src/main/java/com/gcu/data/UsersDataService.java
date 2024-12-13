@@ -18,12 +18,18 @@ public class UsersDataService implements UsersDataAccessInterface<UserEntity>
 		this.usersRepository = usersRepository;
 	}
 
+	/**
+	 * Get a user by matching with the requested username
+	 */
 	@Override
 	public UserEntity findUserByUsername(String username)
 	{
 		return usersRepository.findByUsername(username);
 	}
 
+	/**
+	 * Create a user
+	 */
 	@Override
 	public boolean createUser(UserEntity user)
 	{
